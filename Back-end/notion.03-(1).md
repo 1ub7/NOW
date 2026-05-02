@@ -19,19 +19,17 @@ Service
 Repository
    ↓
 Database(DB)
-   ↑
-Entity / DTO
 ```
 
 ## 3. 각 계층 역할
-**Client**  
-요청을 보내는 주체 
+**Client**     
+서버에 요청을 보내고 응답을 받는 주체 
 - HTTP 요청을 서버로 보냄
 - 결과(응답)를 화면에 출력 
 - ex) 브라우저, 앱, 프론트엔드 
 
-**Controllor**  
-사용자의 요청을 받아서 Service로 전달하고 응답을 반환하는 계층
+**Controller**  
+사용자의 HTTP 요청을 받아서 Service로 전달하고, 처리 결과를 응답을 반환하는 계층
 - HTTP 요청 처리
 - URL 매핑
 - Service 호출
@@ -75,11 +73,14 @@ Entity / DTO
 **DTO(Data Transfer Object)**   
 계층 간 데이터 전달용 객체  
 - 필요한 데이터만 전달
-- Controller <-> Service 사이 이동
+- Controller <-> Service <-> Repository 등 
 - 보안/최적화 목적
 
 특징    
-- Entity와 분리됨
+- Entity와 분리됨    
+**왜 분리된 걸까?**  
+Entity는 DB 구조 그대로여서 외부 노출 위험 있음    
+DTO는 필요한 데이터만 전달해서 보안+최적화 가능
 - 데이터 전달 전용
 
 ## 4. 특징
@@ -110,14 +111,14 @@ Service 같은 핵심 로직은 여러 Controller에서 사용 가능
 **재사용성 증가**   
 같은 로직을 여러 곳에서 반복해서 쓰지 않아도 되는 구조
 
-왜 가능함?
+왜 가능할까?
 - 핵심 로직이 Service에 집중됨
 - Controller는 단순 호출 역할
 
 **테스트 용이성 증가**  
 각 계층을 독립적으로 테스트 가능
 
-왜 좋음?
+왜 좋을까?
 - Service만 따로 테스트 가능
 - DB 없이 로직 테스트 가능
 - Controller도 단독 테스트 가능
