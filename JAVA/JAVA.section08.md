@@ -2,7 +2,7 @@
 ## 51. Scanner 학습
 ```
 package Scanner;
-
+ 
 import java.util.Scanner;
 
 public class Scanner1 {
